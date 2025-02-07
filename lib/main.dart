@@ -38,10 +38,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 enum ColorLabel {
-  red('Red', Color(0xFFB71C1C)),
-  orange('Orange', Colors.deepOrange),
-  yellow('Yellow', Colors.amber),
-  green('Green', Colors.lightGreen);
+  space("", Colors.grey),
+  red('Super Hard', Color(0xFFB71C1C)),
+  orange('Hard', Colors.deepOrange),
+  yellow('Mid', Colors.amber),
+  green('Easy', Colors.lightGreen);
 
   const ColorLabel(this.label, this.color);
 
@@ -49,8 +50,31 @@ enum ColorLabel {
   final Color color;
 }
 
+enum ElementBloodline {
+  space("", Colors.grey),
+  wind("Wind", Colors.green),
+  thunder("Thunder", Colors.purple),
+  fire("Fire", Colors.red),
+  water("Water", Colors.blue),
+  earth("Earth", Colors.brown),
+  blank("Leave blank if not sure", Colors.grey);
+
+  const ElementBloodline(this.element, this.color);
+
+  final String element;
+  final Color color;
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   ColorLabel? selectedColor;
+  ElementBloodline? selectedElement;
+  bool isChecked = false;
+
+  void _toggleCheckbox(bool? value) {
+    setState(() {
+      isChecked = value ?? false; // Null check and update state
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,44 +118,97 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (_) => AlertDialog(
               title: Text("Add"),
               // title: Text("Add Player"),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "Name",
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8.0,
-                  ),
-                  DropdownMenu<ColorLabel>(
-                    initialSelection: null,
-                    requestFocusOnTap: false,
-                    label: const Text('Level'),
-                    onSelected: (ColorLabel? color) {
-                      setState(() {
-                        selectedColor = color;
-                      });
-                    },
-                    dropdownMenuEntries: ColorLabel.values
-                        .map<DropdownMenuEntry<ColorLabel>>((ColorLabel color) {
-                      return DropdownMenuEntry<ColorLabel>(
-                        value: color,
-                        label: color.label,
-                        enabled: color.label != 'Grey',
-                        style: MenuItemButton.styleFrom(
-                          foregroundColor: color.color,
+              content: Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(5),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: "Name",
+                            ),
+                          ),
                         ),
-                      );
-                    }).toList(),
-                  ),
-                  MaterialButton(
-                    onPressed: () {},
-                  ),
-                ],
+                        SizedBox(
+                          width: 8.0,
+                        ),
+                        Expanded(
+                          child: DropdownMenu<ColorLabel>(
+                            // width: double.infinity,
+                            initialSelection: null,
+                            requestFocusOnTap: false,
+                            label: const Text('Level'),
+                            onSelected: (ColorLabel? color) {
+                              setState(() {
+                                selectedColor = color;
+                              });
+                            },
+                            dropdownMenuEntries: ColorLabel.values
+                                .map<DropdownMenuEntry<ColorLabel>>(
+                                    (ColorLabel color) {
+                              return DropdownMenuEntry<ColorLabel>(
+                                value: color,
+                                label: color.label,
+                                enabled:
+                                    color.label.toLowerCase() != 'Leave Blank',
+                                style: MenuItemButton.styleFrom(
+                                  foregroundColor: color.color,
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 8.0,
+                    ),
+                    DropdownMenu<ElementBloodline>(
+                      // width: double.infinity,
+                      initialSelection: null,
+                      requestFocusOnTap: false,
+                      label: const Text('Element/Bloodline'),
+                      onSelected: (ElementBloodline? bloodline) {
+                        setState(() {
+                          selectedElement = bloodline;
+                        });
+                      },
+                      dropdownMenuEntries: ElementBloodline.values
+                          .map<DropdownMenuEntry<ElementBloodline>>(
+                              (ElementBloodline bloodline) {
+                        return DropdownMenuEntry<ElementBloodline>(
+                          value: bloodline,
+                          label: bloodline.element,
+                          enabled: bloodline.element.toLowerCase() !=
+                              'leave blank if not sure',
+                          style: MenuItemButton.styleFrom(
+                            foregroundColor: bloodline.color,
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    Text("Secret Talents"),
+                    Checkbox(
+                      value: isChecked,
+                      activeColor: Colors.red[900],
+                      onChanged: _toggleCheckbox,
+                    ),
+                    // Displaying whether the checkbox is checked or not
+                    Text(isChecked ? 'Checked' : 'Unchecked'),
+                    MaterialButton(
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
               ),
             ));
   }
