@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.red[900], // the background color
         ),
       ),
-      home: const MyHomePage(title: 'SW Players Info'),
+      home: const MyHomePage(title: 'SW Info'),
     );
   }
 }
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: popupAddPlayer,
-        tooltip: 'Add Player',
+        tooltip: 'Add',
         child: const Icon(
           Icons.add,
           color: Colors.white,
@@ -92,7 +92,8 @@ class _MyHomePageState extends State<MyHomePage> {
     showDialog(
         context: context,
         builder: (_) => AlertDialog(
-              title: Text("Add Player"),
+              title: Text("Add"),
+              // title: Text("Add Player"),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
