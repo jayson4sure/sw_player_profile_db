@@ -37,15 +37,30 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+enum ColorLabel {
+  red('Red', Color(0xFFB71C1C)),
+  orange('Orange', Colors.deepOrange),
+  yellow('Yellow', Colors.amber),
+  green('Green', Colors.lightGreen);
+
+  const ColorLabel(this.label, this.color);
+
+  final String label;
+  final Color color;
+}
+
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  ColorLabel? selectedColor;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red[900],
-        title: Text(widget.title, style: TextStyle(color: Colors.white),),
+        title: Text(
+          widget.title,
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
       ),
       body: Center(
@@ -56,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '0',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
@@ -65,15 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: popupAddPlayer,
         tooltip: 'Add Player',
-        child: const Icon(Icons.add, color: Colors.white,),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      // _counter++;
-    });
   }
 
   void popupAddPlayer() {
@@ -83,12 +95,37 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text("Add Player"),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: "IGN",
+                      hintText: "Name",
                     ),
+                  ),
+                  SizedBox(
+                    height: 8.0,
+                  ),
+                  DropdownMenu<ColorLabel>(
+                    initialSelection: null,
+                    requestFocusOnTap: false,
+                    label: const Text('Level'),
+                    onSelected: (ColorLabel? color) {
+                      setState(() {
+                        selectedColor = color;
+                      });
+                    },
+                    dropdownMenuEntries: ColorLabel.values
+                        .map<DropdownMenuEntry<ColorLabel>>((ColorLabel color) {
+                      return DropdownMenuEntry<ColorLabel>(
+                        value: color,
+                        label: color.label,
+                        enabled: color.label != 'Grey',
+                        style: MenuItemButton.styleFrom(
+                          foregroundColor: color.color,
+                        ),
+                      );
+                    }).toList(),
                   ),
                   MaterialButton(
                     onPressed: () {},
