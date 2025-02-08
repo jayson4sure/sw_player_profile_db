@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sw_player_profile_db/dialogs/popup_add_player.dart';
+import 'package:sw_player_profile_db/add_player.dart';
 
 void main() {
   runApp(const MyApp());
@@ -153,7 +153,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: popupAddPlayer,
+        onPressed: () {
+          // Navigate to the AddPlayerScreen
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddPlayerScreen()),
+          );
+        },
         // onPressed: AddPlayerPopup.show(context),
         tooltip: 'Add',
         child: const Icon(
@@ -273,155 +279,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                             title: Text("Lava"),
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CheckboxListTile(
-                            value: isCheck3,
-                            activeColor: Colors.red[900],
-                            onChanged: (bool? value) {
-                              _toggleCheckbox(3, value);
-                            },
-                            title: Text("HS"),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        Expanded(
-                          child: CheckboxListTile(
-                            value: isCheck4,
-                            activeColor: Colors.red[900],
-                            onChanged: (bool? value) {
-                              _toggleCheckbox(4, value);
-                            },
-                            title: Text("DS"),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CheckboxListTile(
-                            value: isCheck5,
-                            activeColor: Colors.red[900],
-                            onChanged: (bool? value) {
-                              _toggleCheckbox(5, value);
-                            },
-                            title: Text("BT"),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        Expanded(
-                          child: CheckboxListTile(
-                            value: isCheck6,
-                            activeColor: Colors.red[900],
-                            onChanged: (bool? value) {
-                              _toggleCheckbox(6, value);
-                            },
-                            title: Text("Elec"),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CheckboxListTile(
-                            value: isCheck7,
-                            activeColor: Colors.red[900],
-                            onChanged: (bool? value) {
-                              _toggleCheckbox(7, value);
-                            },
-                            title: Text("Mangekyou"),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        Expanded(
-                          child: CheckboxListTile(
-                            value: isCheck8,
-                            activeColor: Colors.red[900],
-                            onChanged: (bool? value) {
-                              _toggleCheckbox(8, value);
-                            },
-                            title: Text("Icy"),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CheckboxListTile(
-                            value: isCheck9,
-                            activeColor: Colors.red[900],
-                            onChanged: (bool? value) {
-                              _toggleCheckbox(9, value);
-                            },
-                            title: Text("Light"),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        Expanded(
-                          child: CheckboxListTile(
-                            value: isCheck10,
-                            activeColor: Colors.red[900],
-                            onChanged: (bool? value) {
-                              _toggleCheckbox(10, value);
-                            },
-                            title: Text("Darkness"),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CheckboxListTile(
-                                value: isCheck11,
-                                activeColor: Colors.red[900],
-                                onChanged: (bool? value) {
-                                  _toggleCheckbox(11, value);
-                                },
-                                title: Text("FTG"),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 8.0,
-                            ),
-                            Expanded(
-                              child: CheckboxListTile(
-                                value: isCheck12,
-                                activeColor: Colors.red[900],
-                                onChanged: (bool? value) {
-                                  _toggleCheckbox(12, value);
-                                },
-                                title: Text("Tremor"),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: CheckboxListTile(
-                                value: isCheck13,
-                                activeColor: Colors.red[900],
-                                onChanged: (bool? value) {
-                                  _toggleCheckbox(13, value);
-                                },
-                                title: Text("Lunar Fang"),
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     ),
