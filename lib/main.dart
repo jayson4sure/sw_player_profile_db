@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sw_player_profile_db/dialogs/popup_add_player.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,8 +57,7 @@ enum ElementBloodline {
   thunder("Thunder", Colors.purple),
   fire("Fire", Colors.red),
   water("Water", Colors.blue),
-  earth("Earth", Colors.brown),
-  blank("Leave blank if not sure", Colors.grey);
+  earth("Earth", Colors.brown);
 
   const ElementBloodline(this.element, this.color);
 
@@ -68,11 +68,62 @@ enum ElementBloodline {
 class _MyHomePageState extends State<MyHomePage> {
   ColorLabel? selectedColor;
   ElementBloodline? selectedElement;
-  bool isChecked = false;
-
-  void _toggleCheckbox(bool? value) {
+  bool isCheck = false;
+  bool isCheck2 = false;
+  bool isCheck3 = false;
+  bool isCheck4 = false;
+  bool isCheck5 = false;
+  bool isCheck6 = false;
+  bool isCheck7 = false;
+  bool isCheck8 = false;
+  bool isCheck9 = false;
+  bool isCheck10 = false;
+  bool isCheck11 = false;
+  bool isCheck12 = false;
+  bool isCheck13 = false;
+  void _toggleCheckbox(int index, bool? value) {
     setState(() {
-      isChecked = value ?? false; // Null check and update state
+      switch (index) {
+        case 1:
+          isCheck = value ?? false;
+          break;
+        case 2:
+          isCheck2 = value ?? false;
+          break;
+        case 3:
+          isCheck3 = value ?? false;
+          break;
+        case 4:
+          isCheck4 = value ?? false;
+          break;
+        case 5:
+          isCheck5 = value ?? false;
+          break;
+        case 6:
+          isCheck6 = value ?? false;
+          break;
+        case 7:
+          isCheck7 = value ?? false;
+          break;
+        case 8:
+          isCheck8 = value ?? false;
+          break;
+        case 9:
+          isCheck9 = value ?? false;
+          break;
+        case 10:
+          isCheck10 = value ?? false;
+          break;
+        case 11:
+          isCheck11 = value ?? false;
+          break;
+        case 12:
+          isCheck12 = value ?? false;
+          break;
+        case 13:
+          isCheck13 = value ?? false;
+          break;
+      }
     });
   }
 
@@ -103,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: popupAddPlayer,
+        // onPressed: AddPlayerPopup.show(context),
         tooltip: 'Add',
         child: const Icon(
           Icons.add,
@@ -197,13 +249,183 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 16.0,
                     ),
                     Text("Secret Talents"),
-                    Checkbox(
-                      value: isChecked,
-                      activeColor: Colors.red[900],
-                      onChanged: _toggleCheckbox,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CheckboxListTile(
+                            value: isCheck,
+                            activeColor: Colors.red[900],
+                            onChanged: (bool? value) {
+                              _toggleCheckbox(1, value);
+                            },
+                            title: Text("E-Forest"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8.0,
+                        ),
+                        Expanded(
+                          child: CheckboxListTile(
+                            value: isCheck2,
+                            activeColor: Colors.red[900],
+                            onChanged: (bool? value) {
+                              _toggleCheckbox(2, value);
+                            },
+                            title: Text("Lava"),
+                          ),
+                        ),
+                      ],
                     ),
-                    // Displaying whether the checkbox is checked or not
-                    Text(isChecked ? 'Checked' : 'Unchecked'),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CheckboxListTile(
+                            value: isCheck3,
+                            activeColor: Colors.red[900],
+                            onChanged: (bool? value) {
+                              _toggleCheckbox(3, value);
+                            },
+                            title: Text("HS"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8.0,
+                        ),
+                        Expanded(
+                          child: CheckboxListTile(
+                            value: isCheck4,
+                            activeColor: Colors.red[900],
+                            onChanged: (bool? value) {
+                              _toggleCheckbox(4, value);
+                            },
+                            title: Text("DS"),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CheckboxListTile(
+                            value: isCheck5,
+                            activeColor: Colors.red[900],
+                            onChanged: (bool? value) {
+                              _toggleCheckbox(5, value);
+                            },
+                            title: Text("BT"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8.0,
+                        ),
+                        Expanded(
+                          child: CheckboxListTile(
+                            value: isCheck6,
+                            activeColor: Colors.red[900],
+                            onChanged: (bool? value) {
+                              _toggleCheckbox(6, value);
+                            },
+                            title: Text("Elec"),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CheckboxListTile(
+                            value: isCheck7,
+                            activeColor: Colors.red[900],
+                            onChanged: (bool? value) {
+                              _toggleCheckbox(7, value);
+                            },
+                            title: Text("Mangekyou"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8.0,
+                        ),
+                        Expanded(
+                          child: CheckboxListTile(
+                            value: isCheck8,
+                            activeColor: Colors.red[900],
+                            onChanged: (bool? value) {
+                              _toggleCheckbox(8, value);
+                            },
+                            title: Text("Icy"),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CheckboxListTile(
+                            value: isCheck9,
+                            activeColor: Colors.red[900],
+                            onChanged: (bool? value) {
+                              _toggleCheckbox(9, value);
+                            },
+                            title: Text("Light"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8.0,
+                        ),
+                        Expanded(
+                          child: CheckboxListTile(
+                            value: isCheck10,
+                            activeColor: Colors.red[900],
+                            onChanged: (bool? value) {
+                              _toggleCheckbox(10, value);
+                            },
+                            title: Text("Darkness"),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: CheckboxListTile(
+                                value: isCheck11,
+                                activeColor: Colors.red[900],
+                                onChanged: (bool? value) {
+                                  _toggleCheckbox(11, value);
+                                },
+                                title: Text("FTG"),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 8.0,
+                            ),
+                            Expanded(
+                              child: CheckboxListTile(
+                                value: isCheck12,
+                                activeColor: Colors.red[900],
+                                onChanged: (bool? value) {
+                                  _toggleCheckbox(12, value);
+                                },
+                                title: Text("Tremor"),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: CheckboxListTile(
+                                value: isCheck13,
+                                activeColor: Colors.red[900],
+                                onChanged: (bool? value) {
+                                  _toggleCheckbox(13, value);
+                                },
+                                title: Text("Lunar Fang"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8.0),
                     MaterialButton(
                       onPressed: () {},
                     ),
